@@ -14,17 +14,17 @@ The project provides an interactive environment for exploring the strengths, lim
 
 Uses the Radial Basis Function kernel:
 
-[
-K(x_i, x_j) = \exp(-\gamma |x_i - x_j|^2)
-]
+```text
+K(xi, xj) = exp(-γ ||xi - xj||²)
+```
 
 #### Quantum SVM
 
-Uses PennyLane's "default.qubit" simulator to construct a quantum feature map and quantum kernel:
+Uses PennyLane's `default.qubit` simulator to construct a quantum feature map and quantum kernel:
 
-[
-K(x, y) = |\langle \psi(x) | \psi(y) \rangle|^2
-]
+```text
+K(x, y) = |<ψ(x)|ψ(y)>|²
+```
 
 Data is encoded into quantum states using parameterized rotations and entangling operations.
 
@@ -126,7 +126,7 @@ Optional PCA support for:
 ### Comparative Analysis
 
 * Classical vs Quantum Metric Comparison
-* Metric Variation Across Dataset Splits
+* Metric Variation Across Sample Splits
 * Metric Variation Across Cross-Validation Folds
 * Cross-Dataset Benchmark Summary
 
@@ -141,7 +141,7 @@ Optional PCA support for:
 
 ## 🔬 Research-Oriented Features
 
-The application now supports:
+The application supports:
 
 * 5-Fold Cross Validation
 * Fold-safe preprocessing
@@ -168,6 +168,7 @@ These additions make the project suitable for comparative Quantum Machine Learni
 
 ## 📂 Project Structure
 
+```text
 📦 classical-vs-quantum-svm
 │
 ├── app.py
@@ -181,7 +182,7 @@ These additions make the project suitable for comparative Quantum Machine Learni
 │
 ├── benchmark_results.csv
 ├── README.md
-
+```
 
 ---
 
