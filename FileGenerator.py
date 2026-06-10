@@ -11,7 +11,9 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 datasets = {
     "Iris": "datasets/iris.csv",
     "Glass": "datasets/glass.csv",
-    "Social Media Ads": "datasets/social_network_ads.csv"
+    "Social Media Ads": "datasets/social_network_ads.csv",
+    "Breast Cancer": "datasets/breast_cancer.csv",
+    "Wine": "datasets/wine.csv"
 }
 
 # ================= CSV file =================
