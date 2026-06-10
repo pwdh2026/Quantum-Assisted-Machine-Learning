@@ -1,137 +1,226 @@
 # ⚛️ Classical vs Quantum SVM (PennyLane)
 
-An interactive **Streamlit web application** comparing the performance of **Classical SVM (RBF Kernel)** and **Quantum SVM (PennyLane-based Quantum Kernel)** across various datasets, with adjustable parameters, visualizations, and evaluation metrics.
+An interactive **Streamlit web application** for comparing **Classical Support Vector Machines (RBF Kernel)** and **Quantum Support Vector Machines (PennyLane-based Quantum Kernel)** under both traditional train-test evaluation and research-oriented cross-validation workflows.
+
+The project provides an interactive environment for exploring the strengths, limitations, computational costs, and performance characteristics of classical and quantum kernel methods across multiple datasets.
 
 ---
 
 ## 🚀 Features
 
-### 🧠 Model Comparison
-- **Classical SVM (RBF Kernel):**  
-  Implements a standard radial basis function kernel:
-  \[
-  K(x_i, x_j) = \exp(-\gamma \|x_i - x_j\|^2)
-  \]
+### 🧠 Classical vs Quantum Model Comparison
 
-- **Quantum SVM:**  
-  Uses **PennyLane’s default.qubit simulator** to encode data into quantum states using parameterized rotations:
-  \[
-  K(x, y) = |\langle \psi(x) | \psi(y) \rangle|^2
-  \]
+#### Classical SVM (RBF Kernel)
 
-### 📊 Evaluation Metrics
-- Accuracy  
-- Precision  
-- Recall  
-- F1 Score  
-- Processing Time  
+Uses the Radial Basis Function kernel:
 
-### 🧩 Interactive Dataset Options
-- Upload your own CSV file  
-- Preloaded sample datasets:
-  - Iris
-  - Glass
-  - Social Network Ads
+[
+K(x_i, x_j) = \exp(-\gamma |x_i - x_j|^2)
+]
 
-### 🧮 Preprocessing & Configurations
-- Automatic label encoding and one-hot encoding  
-- StandardScaler normalization  
-- Optional PCA (Principal Component Analysis)  
-- Adjustable test split ratio and quantum training sample limits
+#### Quantum SVM
 
-### 📈 Visualization Tools
-- Confusion matrices for both models  
-- Decision boundaries (for 2D data)  
-- Metric comparison bar charts  
-- Metric variation across multiple dataset splits  
-- Cross-dataset summary with trend plots and bar comparisons  
+Uses PennyLane's "default.qubit" simulator to construct a quantum feature map and quantum kernel:
+
+[
+K(x, y) = |\langle \psi(x) | \psi(y) \rangle|^2
+]
+
+Data is encoded into quantum states using parameterized rotations and entangling operations.
+
+---
+
+## 📊 Evaluation Modes
+
+### Train-Test Mode
+
+Traditional machine learning evaluation using a configurable train-test split.
+
+Features:
+
+* Adjustable test size fraction
+* Classical vs Quantum comparison
+* Metric variation across multiple sample splits
+* Decision boundaries and confusion matrices
+* Quantum kernel visualization
+
+---
+
+### 5-Fold Cross Validation Mode
+
+Research-oriented evaluation using Stratified 5-Fold Cross Validation.
+
+Features:
+
+* Fold-wise model evaluation
+* Average Accuracy, Precision, Recall, F1 Score, and Runtime
+* Fold variation analysis
+* Fold-safe preprocessing to prevent data leakage
+* Fold-based visualizations and benchmarking
+
+---
+
+## 📂 Built-In Datasets
+
+The application includes the following datasets:
+
+* Iris
+* Glass
+* Social Network Ads
+* Breast Cancer
+* Wine
+
+Users can also upload custom CSV datasets.
+
+---
+
+## 🧮 Preprocessing Pipeline
+
+### Automatic Feature Handling
+
+* Label Encoding
+* One-Hot Encoding
+* StandardScaler normalization
+
+### Dimensionality Reduction
+
+Optional PCA support for:
+
+* Visualization
+* Quantum kernel stability
+* Reduced quantum feature space dimensionality
+
+---
+
+## ⚙️ Adjustable Parameters
+
+| Parameter                 | Description                                                |
+| ------------------------- | ---------------------------------------------------------- |
+| Evaluation Mode           | Train-Test Split or 5-Fold CV                              |
+| PCA Components            | Number of PCA dimensions used                              |
+| Test Size Fraction        | Percentage of data used for testing (Train-Test Mode only) |
+| Max Quantum Samples       | Limits quantum kernel computation size                     |
+| Quantum Limitation Factor | Simulates practical quantum hardware constraints           |
+| Dataset Selection         | Built-in datasets or custom CSV                            |
+
+---
+
+## 📈 Visualizations
+
+### Performance Analysis
+
+* Accuracy
+* Precision
+* Recall
+* F1 Score
+* Processing Time
+
+### Model Diagnostics
+
+* Classical Confusion Matrix
+* Quantum Confusion Matrix
+* Classical Decision Boundary
+* Quantum Kernel Heatmap
+* Sample Prediction Comparison
+
+### Comparative Analysis
+
+* Classical vs Quantum Metric Comparison
+* Metric Variation Across Dataset Splits
+* Metric Variation Across Cross-Validation Folds
+* Cross-Dataset Benchmark Summary
+
+### Benchmark Visualizations
+
+* Trend Plots
+* Performance Comparison Charts
+* Dataset Size Analysis
+* Classical vs Quantum Runtime Comparison
+
+---
+
+## 🔬 Research-Oriented Features
+
+The application now supports:
+
+* 5-Fold Cross Validation
+* Fold-safe preprocessing
+* Quantum resource limitation simulation
+* Runtime benchmarking
+* Multi-dataset evaluation
+* Reproducible experimental settings
+
+These additions make the project suitable for comparative Quantum Machine Learning studies and publication-oriented experimentation.
 
 ---
 
 ## 🧰 Tech Stack
 
-| Component | Technology |
-|------------|-------------|
-| Frontend/UI | **Streamlit** |
-| Classical ML | **Scikit-learn (SVM, PCA, Metrics)** |
-| Quantum ML | **PennyLane (default.qubit backend)** |
-| Visualization | **Matplotlib, Seaborn** |
-| Data Handling | **Pandas, NumPy** |
+| Component       | Technology          |
+| --------------- | ------------------- |
+| Frontend/UI     | Streamlit           |
+| Classical ML    | Scikit-learn        |
+| Quantum ML      | PennyLane           |
+| Visualization   | Matplotlib, Seaborn |
+| Data Processing | Pandas, NumPy       |
 
 ---
 
 ## 📂 Project Structure
 
-```
 📦 classical-vs-quantum-svm
 │
-├── app.py                           # Main Streamlit application
-├── datasets/                        # Dataset storage
+├── app.py
+├── datasets/
 │   ├── iris.csv
 │   ├── glass.csv
 │   ├── social_network_ads.csv
-│   └── dataset_summary_results.csv  # Optional summary data
+│   ├── breast_cancer.csv
+│   ├── wine.csv
+│   └── dataset_summary_results.csv
 │
-├── README.md                        # Project documentation
-```
+├── benchmark_results.csv
+├── README.md
 
----
-
-## 🧮 Adjustable Parameters (Sidebar Controls)
-
-| Parameter | Description |
-|------------|--------------|
-| PCA Components | Reduce feature dimensions for visualization and quantum kernel stability |
-| Test Size | Fraction of dataset used for testing |
-| Max Quantum Samples | Limits dataset size for quantum circuit simulation |
-| Quantum Limit Factor | Simulates hardware constraints by reducing training data |
-| Dataset Choice | Select from preloaded datasets or upload your own CSV |
-
----
-
-## 🧩 Outputs & Visualizations
-
-| Section | Description |
-|----------|--------------|
-| **Metric Dashboard** | Displays accuracy, precision, recall, F1, and time for both models |
-| **Confusion Matrices** | Heatmaps for both Classical and Quantum predictions |
-| **Decision Boundary** | For 2D data, shows model separation visually |
-| **Metric Comparison Chart** | Side-by-side bar chart comparison |
-| **Metric Variation Across Splits** | Shows metric fluctuations across 10 sample splits |
-| **Cross-Dataset Summary** | Aggregates results across datasets for deeper insight |
-| **Trend Plots & Bar Charts** | Compare Classical vs Quantum across dataset sizes |
 
 ---
 
 ## 📚 Conceptual Overview
 
-This project demonstrates:
-- The practical **differences between classical kernel methods and quantum-enhanced kernels**.  
-- How **quantum circuits can be used to construct data-dependent kernels** for classification tasks.  
-- The trade-offs between **accuracy and computational cost** under varying dataset sizes and quantum limitations.
+This project explores:
 
-It serves as a foundation for **Quantum-Assisted Machine Learning (QAML)** exploration and benchmarking.
+* Classical kernel-based classification
+* Quantum-enhanced kernel methods
+* Practical limitations of current quantum approaches
+* Trade-offs between accuracy and computational cost
+* Effects of dataset size and feature dimensionality on quantum models
+
+The platform provides a side-by-side environment for evaluating whether quantum kernels offer meaningful benefits for specific classification problems.
 
 ---
 
 ## 🧠 Research Relevance
 
-This project replicates and extends experiments inspired by the IEEE paper:  
-**“Comparative Analysis of a Quantum SVM With an Optimized Kernel Versus Classical SVMs.”**
+This work was inspired by and extends concepts explored in:
 
-It provides a real-time, visual, and interactive environment to analyze both models’ behavior under identical conditions.
+**Comparative Analysis of a Quantum SVM With an Optimized Kernel Versus Classical SVMs**
+
+The project serves as a practical Quantum-Assisted Machine Learning (QAML) benchmarking environment and supports publication-oriented experimentation through reproducible evaluation workflows.
 
 ---
 
 ## 📜 License
 
-This project is released under the **MIT License**.  
-You are free to use, modify, and distribute it with attribution.
+Released under the MIT License.
 
 ---
 
 ## 👨‍💻 Author
 
-**PlatinumManX**  
-🎓 Engineering Student | 💻 Technical Game Dev Enthusiast | ⚛️ Quantum ML Explorer  
-📫 Connect: [GitHub Profile](https://github.com/PlatinumManX)
+**PlatinumManX**
+
+🎓 Engineering Student
+💻 Technical Game Development Enthusiast
+⚛️ Quantum Machine Learning Explorer
+
+GitHub: https://github.com/PlatinumManX
