@@ -1,0 +1,30 @@
+run_id,timestamp,dataset,n_samples,n_features,pca_qubits,eval_mode,q_samples_limit,q_limit_factor,classical_budget,classical_kernel,seed,acc_classical,acc_quantum,delta_acc,sigma_fold_acc,time_classical_s,time_quantum_s,notes
+O2,2026-08-06T20:00,iris_binary,100,2,2,train_test_manual,75,1.0,untuned,rbf,42,1.0000,1.0000,0.0000,na,0.003,21.0,my d1_minimal_run.py; full kernel matrix m*n evals
+O1,2026-08-06T21:00,iris_3class,150,4,2,train_test_app,300,1.0,untuned,rbf,42,1.0000,0.9667,-0.0333,na,0.02,0.45,CONFIG RE-VERIFIED by user (max=300 factor=1.00; no truncation); PROMOTED
+O3-wine-def,2026-08-06,wine,178,13,2,defective_leak_trunc,100,1.0,untuned,rbf,42,0.9167,0.6944,-0.2222,na,na,0.4,d2_leak_pair.py; fork 329688b
+O3-wine-fix,2026-08-06,wine,178,13,2,fixed_foldsafe,100,1.0,untuned,rbf,42,0.9444,0.7222,-0.2222,na,na,0.3,d2_leak_pair.py; protocol_effect(wine)=+0.0000
+O3-glass-def,2026-08-06,glass,214,9,2,defective_leak_trunc,100,1.0,untuned,rbf,42,0.6512,0.3488,-0.3023,na,na,0.4,d2_leak_pair.py; fork 329688b
+O3-glass-fix,2026-08-06,glass,214,9,2,fixed_foldsafe,100,1.0,untuned,rbf,42,0.6279,0.4884,-0.1395,na,na,0.4,d2_leak_pair.py; protocol_effect(glass)=-0.1628
+O4-churn-cv-c,2026-08-06,bank_churn,375,tbc,2,5fold_cv,300,1.0,untuned,rbf,42,0.7980,na,na,na,2.74,na,user-run screenshot; pca assumed 2 TBC; n=10000 (caption % was factor slider, misread); Q saw 375 subsample vs C full 10000
+O4-churn-cv-q,2026-08-06,bank_churn,375,tbc,2,5fold_cv,300,1.0,untuned,rbf,42,0.7980,0.8027,+0.0047,na,na,1.76,Q subsample 375 of 10000; C full-data; comparison confounded
+O4-churn-tt-c,2026-08-06,bank_churn,375,tbc,2,train_test_leak,300,1.0,untuned,rbf,42,0.7958,na,na,na,1.83,na,user-run screenshot
+O4-churn-tt-q,2026-08-06,bank_churn,375,tbc,2,train_test_leak,300,1.0,untuned,rbf,42,0.7958,0.8367,+0.0409,na,na,3.13,300=100% train; protocol_effect_on_delta=+0.0362 (defective inflates apparent advantage)
+O5-d300-s42,2026-08-06,bank_churn,10000,11,2,5fold_cv_matched,300,1.0,grid4k,rbf-best,42,0.8080,0.8027,-0.0053,0.0053,na,na,d3_dose.py; repro O4 Q exact
+O5-d300-s0,2026-08-06,bank_churn,10000,11,2,5fold_cv_matched,300,1.0,grid4k,rbf-best,0,0.8053,0.8027,-0.0027,0.0053,na,na,d3_dose.py
+O5-d300-s7,2026-08-06,bank_churn,10000,11,2,5fold_cv_matched,300,1.0,grid4k,rbf-best,7,0.8107,0.8027,-0.0080,0.0053,na,na,d3_dose.py
+O5-d150-s42,2026-08-06,bank_churn,10000,11,2,5fold_cv_matched,150,1.0,grid4k,linear-best,42,0.7915,0.7915,+0.0000,0.0100,na,na,tie with linear
+O5-d150-s0,2026-08-06,bank_churn,10000,11,2,5fold_cv_matched,150,1.0,grid4k,linear-best,0,0.7915,0.7915,+0.0000,0.0100,na,na,tie with linear
+O5-d150-s7,2026-08-06,bank_churn,10000,11,2,5fold_cv_matched,150,1.0,grid4k,rbf-best,7,0.7967,0.7915,-0.0053,0.0100,na,na,d3_dose.py
+O5-d75-s42,2026-08-06,bank_churn,10000,11,2,5fold_cv_matched,75,1.0,grid4k,linear-best,42,0.7848,0.7848,+0.0000,0.0057,na,na,tie with linear
+O5-d75-s0,2026-08-06,bank_churn,10000,11,2,5fold_cv_matched,75,1.0,grid4k,linear-best,0,0.7848,0.7848,+0.0000,0.0057,na,na,tie with linear
+O5-d75-s7,2026-08-06,bank_churn,10000,11,2,5fold_cv_matched,75,1.0,grid4k,linear-best,7,0.7848,0.7848,+0.0000,0.0057,na,na,tie with linear
+O5-note,2026-08-06,bank_churn,10000,11,2,5fold_cv_matched,na,na,na,na,na,na,na,na,na,na,na,verdict: apparent advantage (O4 +0.47/+4.09pp flawed) dies under matched+tuned; Q-tuned<=0 all seeds/doses; dose-down Q converges to linear reference; majority=0.7963
+O6-d4-s42,2026-08-07,bank_churn,10000,11,2,defective_tt,300,1.0,grid4k,rbf-best,42,0.8010,0.8367,+0.0337,na,na,2.0,d4_defective_seeds.py; repro O4 Q exact (0.8367); C side +0.5pp vs screenshot (open issue 8)
+O6-d4-s0,2026-08-07,bank_churn,10000,11,2,defective_tt,300,1.0,grid4k,rbf-best,0,0.8020,0.7833,-0.0187,na,na,1.9,d4_defective_seeds.py
+O6-d4-s7,2026-08-07,bank_churn,10000,11,2,defective_tt,300,1.0,grid4k,rbf-best,7,0.8045,0.7567,-0.0478,na,na,1.8,d4_defective_seeds.py
+O6-note,2026-08-07,bank_churn,10000,11,2,defective_tt,na,na,na,na,na,na,na,na,na,na,na,verdict: defective delta-vs-tuned span {+3.4,-1.9,-4.8}pp seed-arbitrary vs matched {-0.3,-0.3,-0.8}pp stable; protocol effect = variance/identifiability not mean bias; O4 +4.09 = seed-42 lucky draw
+O7-glass-s0,2026-08-07,glass,214,9,2,paired_leak_vs_fixed,100,1.0,untuned,rbf,0,na,na,na,na,na,na,protocol effect +0.0465 (def -0.1860 fix -0.2326)
+O7-glass-s7,2026-08-07,glass,214,9,2,paired_leak_vs_fixed,100,1.0,untuned,rbf,7,na,na,na,na,na,na,protocol effect 0.0000 (def -0.1860 fix -0.1860)
+O7-wine-s0,2026-08-07,wine,178,13,2,paired_leak_vs_fixed,100,1.0,untuned,rbf,0,na,na,na,na,na,na,protocol effect -0.0833
+O7-wine-s7,2026-08-07,wine,178,13,2,paired_leak_vs_fixed,100,1.0,untuned,rbf,7,na,na,na,na,na,na,protocol effect +0.0556
+O7-note,2026-08-07,glass,214,9,2,paired_leak_vs_fixed,na,na,na,na,na,na,na,na,na,na,na,glass effects across seeds {-0.1628,+0.0465,0.0000}; 16.3pp was single-seed draw; tiny-data boundary: fair protocol also seed-variable at n<=214

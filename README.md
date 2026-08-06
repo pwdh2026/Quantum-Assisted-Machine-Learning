@@ -225,3 +225,13 @@ Released under the MIT License.
 ⚛️ Quantum Machine Learning Explorer
 
 GitHub: https://github.com/PlatinumManX
+
+---
+
+## 🔁 Reproducibility (GOAI AI for Research submission)
+
+- Forked from: `PlatinumManX/Quantum-Assisted-Machine-Learning` @ commit `329688bbded76673010b0dff4aac099d34a5c9c4` (2026-06-10)
+- Frozen environment: Python 3.13.6 / PennyLane 0.45.1 / scikit-learn 1.9.0 / Streamlit 1.61.1
+- Entry points: `streamlit run app.py` (interactive comparison) and the parameterized scripts `d1_minimal_run.py`, `d2_leak_pair.py`, `d3_dose.py`, `d4_defective_seeds.py`
+- Run log: `run_log.csv` records every configuration (dataset, PCA/qubits, protocol mode, q_limit, classical budget, seeds, metrics, times); negative and anomalous rows are retained
+- Data: built-in UCI datasets ship with the repo; Bank Customer Churn must be obtained from Kaggle under its own license (not redistributed here)
